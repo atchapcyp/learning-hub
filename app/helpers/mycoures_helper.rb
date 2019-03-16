@@ -1,0 +1,2 @@
+module MycouresHelper
+end
