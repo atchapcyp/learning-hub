@@ -1,15 +1,20 @@
-<h1>Add Post</h1>
+<h1>Create Course</h1>
 <%= form_for :course, url: courses_path do |c| %>
+	<% if @course.errors.any? %>
+		<% @course.errors.full_messages.each do |msg| %>
+		<div class="alert alert-danger"><%= msg %></div>
+		<% end %>
+	<% end %>
 	<p>
 		<%= c.label :course_name %><br>
-		<%= c.text_field :course_name %>
+		<%= c.text_field(:course_name, {:class => 'form-control'})%>
 	</p>
 	<p>
 		<%= c.label :course_description %><br>
-		<%= c.text_field :course_description %>
+		<%= c.text_field(:course_description, {:class=> 'form-control'}) %>
 	</p>
 
 	<p>
-		<%= c.submit %>
+		<%= c.submit({:class=> 'btn btn-primary'})%>
 	</p>
 	<% end %>
