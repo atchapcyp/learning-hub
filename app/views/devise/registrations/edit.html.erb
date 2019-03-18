@@ -8,6 +8,45 @@
     <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
   </div>
 
+<div class="field">
+    <%= f.label :user_name ,"Display Name"%><br />
+    <%= f.text_field :user_name, autocomplete: "username" %>
+  </div>
+
+<div class="field">
+    <%= f.label :first_name %><br />
+    <%= f.text_field :first_name %>
+</div>
+
+ <div class="field">
+    <%= f.label :last_name %><br />
+    <%= f.text_field :last_name %>
+  </div>
+  <div class="field">
+    <%= f.label :citizen_id ,"Citizen ID"%><br />
+    <%= f.text_field :citizen_id ,disabled: true%>
+  </div>
+  <div class="field">
+    <%= f.label :user_type ,"User Type"%><br />
+    <%= f.text_field :user_type ,disabled: true %>
+</div>
+
+<div class="field">
+    <%= f.label :student_id ,"Student ID" %><br />
+    <%= f.text_field :student_id , disabled: true %>
+  </div>
+
+  <div class="field">
+    <%= f.label :instructor_id,"Instructor ID" %><br />
+    <%= f.text_field :instructor_id ,disabled: true%>
+  </div>   
+
+<div class="field">
+    <%= f.label :department_name,"Department Name" %><br />
+    <%= f.text_field :department_name, disabled: true%>
+  </div><br />
+
+
   <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
     <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
   <% end %>
@@ -27,7 +66,7 @@
   </div>
 
   <div class="field">
-    <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
+    <%= f.label :current_password %> <br /><i>(we need your current password to confirm your changes)</i><br />
     <%= f.password_field :current_password, autocomplete: "current-password" %>
   </div>
 
@@ -40,4 +79,4 @@
 
 <p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
 
-<%= link_to "Back", :back %>
+<%= link_to "Back", home_path %>

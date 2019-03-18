@@ -22,41 +22,26 @@
   </div>
 
 <div class="field">
-    <%= f.label :user_name %><br />
+    <%= f.label :user_name ,"Display Name"%><br />
     <%= f.text_field :user_name, autocomplete: "username" %>
   </div>
 
-<div class="field">
-    <%= f.label :citizen_id %><br />
-    <%= f.text_field :citizen_id %>
-  </div>
 
 <div class="field">
     <%= f.label :first_name %><br />
     <%= f.text_field :first_name %>
-  </div>
+</div>
 
  <div class="field">
     <%= f.label :last_name %><br />
     <%= f.text_field :last_name %>
   </div>
-  
   <div class="field">
-    <%= f.label :student_id %><br />
-    <%= f.text_field :student_id %>
+    <%= f.label :citizen_id ,"Citizen ID"%><br />
+    <%= f.text_field :citizen_id %>
   </div>
 
   <div class="field">
-    <%= f.label :instructor_id %><br />
-    <%= f.text_field :instructor_id %>
-  </div>   
-
-<div class="field">
-    <%= f.label :department_name %><br />
-    <%= f.text_field :department_name %>
-  </div>
-
-<div class="field">
     <%= f.label :user_type %><br />
     <%= f.radio_button :user_type ,'student', :checked => true %>
     <%= f.label :user_type,'Student',:value=>'student'%><br />
@@ -64,7 +49,24 @@
     <%= f.label :user_type,'Instructor',:value=>'instructor'%><br />
     <%= f.radio_button :user_type ,'other' %>
     <%= f.label :user_type,'Other',:value=>'other'%><br />
-  </div> 
+</div>
+  
+  <div class="field">
+    <%= f.label :student_id ,"Student ID" %><br />
+    <%= f.text_field :student_id , disabled: false %>
+  </div>
+
+  <div class="field">
+    <%= f.label :instructor_id,"Instructor ID" %><br />
+    <%= f.text_field :instructor_id ,disabled: true%>
+  </div>   
+
+<div class="field">
+    <%= f.label :department_name,"Department Name" %><br />
+    <%= f.text_field :department_name, disabled: true%>
+  </div><br />
+  
+
   <div class="actions">
     <%= f.submit "Sign up" %>
   </div>
