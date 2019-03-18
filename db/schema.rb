@@ -10,7 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_03_18_053028) do
+ActiveRecord::Schema.define(version: 2019_03_18_120229) do
+
+  create_table "assignments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.datetime "due_date"
+    t.integer "max_score"
+    t.text "description"
+    t.bigint "course_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["course_id"], name: "index_assignments_on_course_id"
+  end
 
   create_table "courses", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.integer "course_id"
@@ -42,4 +52,5 @@ ActiveRecord::Schema.define(version: 2019_03_18_053028) do
     t.index ["user_name"], name: "index_users_on_user_name", unique: true
   end
 
+  add_foreign_key "assignments", "courses"
 end

@@ -4,6 +4,8 @@ Rails.application.routes.draw do
   
 
   get 'mycourse' => 'mycourses#mycourses',as: 'mycourse'
-  resources :courses
+  resources :courses do
+  	resources :assignments
+  end
   root 'courses#index', as: 'home'
 end

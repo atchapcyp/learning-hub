@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  due_date: 2019-03-18 19:02:29
+  max_score: 1
+  description: MyText
+  course: one
+
+two:
+  due_date: 2019-03-18 19:02:29
+  max_score: 1
+  description: MyText
+  course: two
