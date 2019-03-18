@@ -20,7 +20,13 @@
   <div class="collapse navbar-collapse" id="navbarsExampleDefault">
     <ul class="navbar-nav mr-auto">
       <a class="nav" <%= link_to "Home", home_path %>></a> 
-      <a class="nav" <%= link_to "Create Course", new_course_path %>></a> 
+      <a class="nav" <%= link_to "Create Course", new_course_path %>></a>
+      <% if current_user %>
+                    <li><%= link_to 'Edit Profile',edit_user_registration_path %></li>
+                    <li><%= link_to 'Logout', destroy_user_session_path, method: :delete %></li>
+                <% else %>
+                    <li><%= link_to 'Login', new_user_session_path %></li>
+                <% end %> 
     </ul>
     <form class="form-inline my-2 my-lg-0">
       <input class="form-control mr-sm-2" type="text" placeholder="Search Course" aria-label="Search">
