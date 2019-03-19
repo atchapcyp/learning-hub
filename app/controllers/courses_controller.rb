@@ -6,19 +6,27 @@ class CoursesController < ApplicationController
 
 	def new 
 		@course =Course.new
+		@user=User.find(current_user.id)
 	end
+
 	def show
-		@course=Course.find(params[:id])	
+		@course=Course.find(params[:id])
+		@user=User.find(current_user.id)	
 	end
 
 	def create
 		#render plain: params[:course].inspect // just for show 
-		@course=Course.new(course_params)
+		#@course=Course.new(course_params)
+		@course = Course.new(course_params)
+ 		@course.users << User.find(current_user.id)
 		if(@course.save)
+			#@usercourseaction=Usercourseaction.new(usercourseaction_params)
 			redirect_to @course
 		else
 			render 'new'
 		end
+		
+		
 	end
 
 	def update 
@@ -29,13 +37,11 @@ class CoursesController < ApplicationController
 		else
 			render 'edit'
 		end
-
 	end
 
 	def destroy
 		@course = Course.find(params[:id])
 		@course.destroy
-
 		redirect_to courses_path
 	end
 
@@ -46,4 +52,9 @@ class CoursesController < ApplicationController
 	private def course_params
 		params.require(:course).permit(:course_name,:course_description)
 	end
+
+	private def usercourseaction_params
+		params.require(:course).permit(:user_id,params[:id])
+	end
+
 end

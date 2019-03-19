@@ -1,4 +1,4 @@
-class CoursePerson < ApplicationRecord
+class CourseUser < ApplicationRecord
 	belongs_to :course
-	belongs_to :person
+	belongs_to :user
 end
