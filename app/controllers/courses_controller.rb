@@ -53,8 +53,5 @@ class CoursesController < ApplicationController
 		params.require(:course).permit(:course_name,:course_description)
 	end
 
-	private def usercourseaction_params
-		params.require(:course).permit(:user_id,params[:id])
-	end
 
 end
