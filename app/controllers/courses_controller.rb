@@ -2,7 +2,12 @@ class CoursesController < ApplicationController
 	before_action :authenticate_user!, except: [:index]
 	def index
 		@courses=Course.all
+		@courses_user=Course.joins(usercourseactions: :user)
+		@usercourseactions=Usercourseaction.joins(:user, :course)
+	
 	end
+
+
 
 	def new 
 		@course =Course.new
@@ -11,7 +16,8 @@ class CoursesController < ApplicationController
 
 	def show
 		@course=Course.find(params[:id])
-		@user=User.find(current_user.id)	
+		@user=User.find(current_user.id)
+
 	end
 
 	def create
@@ -19,7 +25,13 @@ class CoursesController < ApplicationController
 		#@course=Course.new(course_params)
 		@course = Course.new(course_params)
  		@course.users << User.find(current_user.id)
+ 		
 		if(@course.save)
+			if (!current_user.instructor_id.nil?)
+			@course.usercourseactions.update(status: 'Create')
+		else
+			@course.usercourseactions.update(status: 'Subscribe')
+		end
 			#@usercourseaction=Usercourseaction.new(usercourseaction_params)
 			redirect_to @course
 		else

@@ -1,8 +1,11 @@
 <h1>All courses</h1>
-<% @courses.each do |course| %>
+<% @courses_user.each do |course| %>
 	<div class="card bg-light" style="margin-bottom: 10px" >
 	<h3><%= course.course_name %></h3>
 	<p><%= course.course_description %></p>
+		<p>Instructor : <%= course.user_ids %>
+			<p>Instructor : <%= @usercourseactions.ids %>
+			
 	<center><div style="width:300px ;margin-bottom: 10px" >
 	<%= link_to "Read More", course_path(course), :class => 'btn btn-outline-dark btn-secondary'  %>
 </div></center>

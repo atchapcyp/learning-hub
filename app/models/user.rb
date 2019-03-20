@@ -5,4 +5,12 @@ class User < ApplicationRecord
   has_many :courses, :through => :usercourseactions
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
+
+  NULL_ATTRS = %w( instructor_id student_id department_name )
+  before_save :nil_if_blank
+
+  protected
+  def nil_if_blank
+    NULL_ATTRS.each { |attr| self[attr] = nil if self[attr].blank? }
+  end
 end

@@ -19,9 +19,12 @@
 >
   <div class="collapse navbar-collapse">
     <ul class="navbar-nav mr-auto">
-      <a class="nav-link" <%= link_to "Home", home_path %> </a> 
-      <a class="nav-link" <%= link_to " Create Course", new_course_path %> </a>
+      <a class="nav-link" <%= link_to "Home", home_path %> </a>
+
       <% if current_user %>
+        <% if !current_user.instructor_id.nil? %>  
+        <a class="nav-link" <%= link_to " Create Course", new_course_path %> </a>
+        <% end %>
                     <li class="nav-link"><%= link_to 'My Course',mycourses_path %> </li>
                     <li class="nav-link"><%= link_to 'Edit Profile',edit_user_registration_path %> </li>
                     <li class="nav-link"><%= link_to 'Logout', destroy_user_session_path, method: :delete %> </li>
@@ -39,8 +42,8 @@
     </form>
   </div>
 </nav>
-      <p class="notice"><%= notice %></p>
-       <p class="alert"><%= alert %></p>
+      <div class="alert alert-success alert-dismissible fade show"><%= notice %></div>
+       <div class="alert alert-danger alert-dismissible fade show"><%= alert %></div>
     
 <div class="container">
     <%= yield %>
