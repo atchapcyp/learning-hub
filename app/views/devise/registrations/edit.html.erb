@@ -3,47 +3,56 @@
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
   <%= render "devise/shared/error_messages", resource: resource %>
 
-  <div class="field">
+<div class="container" style="width:800px ">
+<div class="row ">
+          <div class="col-md-6 mb-3">
+            <label for="firstName">First name</label> 
+              <%= f.text_field :first_name ,:class=>'form-control'%>
+            <div class="invalid-feedback">
+              Valid first name is required.
+            </div>
+          </div>
+          <div class="col-md-6 mb-3">
+            <label for="lastName">Last name</label>
+              <%= f.text_field :last_name ,:class=>'form-control'%>
+            <div class="invalid-feedback">
+              Valid last name is required.
+            </div>
+          </div>
+        </div>
+   <div class="row ">     
+  <div class="field col-md-6 mb-3" > 
     <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+    <%= f.email_field :email, autofocus: true, autocomplete: "email" ,:class=>'form-control'%>
   </div>
 
-<div class="field">
+<div class="field col-md-6 mb-3">
     <%= f.label :user_name ,"Display Name"%><br />
-    <%= f.text_field :user_name, autocomplete: "username" %>
+    <%= f.text_field :user_name, autocomplete: "username",:class=>'form-control' %>
   </div>
-
-<div class="field">
-    <%= f.label :first_name %><br />
-    <%= f.text_field :first_name %>
-</div>
-
- <div class="field">
-    <%= f.label :last_name %><br />
-    <%= f.text_field :last_name %>
   </div>
   <div class="field">
     <%= f.label :citizen_id ,"Citizen ID"%><br />
-    <%= f.text_field :citizen_id ,disabled: true%>
+    <%= f.text_field :citizen_id ,disabled: true ,:class=>'form-control'%>
   </div>
   <div class="field">
     <%= f.label :user_type ,"User Type"%><br />
-    <%= f.text_field :user_type ,disabled: true %>
+    <%= f.text_field :user_type ,disabled: true ,:class=>'form-control'%>
 </div>
 
 <div class="field">
     <%= f.label :student_id ,"Student ID" %><br />
-    <%= f.text_field :student_id , disabled: true %>
+    <%= f.text_field :student_id , disabled: true ,:class=>'form-control'%>
   </div>
 
   <div class="field">
     <%= f.label :instructor_id,"Instructor ID" %><br />
-    <%= f.text_field :instructor_id ,disabled: true%>
+    <%= f.text_field :instructor_id ,disabled: true ,:class=>'form-control'%>
   </div>   
 
 <div class="field">
     <%= f.label :department_name,"Department Name" %><br />
-    <%= f.text_field :department_name, disabled: true%>
+    <%= f.text_field :department_name, disabled: true ,:class=>'form-control'%>
   </div><br />
 
 
@@ -53,30 +62,34 @@
 
   <div class="field">
     <%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
+    <%= f.password_field :password, autocomplete: "new-password" ,:class=>'form-control', placeholder: "6 characters minimum"%>
     <% if @minimum_password_length %>
-      <br />
-      <em><%= @minimum_password_length %> characters minimum</em>
+      <% @minimum_password_length %>
     <% end %>
   </div>
 
   <div class="field">
     <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+    <%= f.password_field :password_confirmation, autocomplete: "new-password" ,:class=>'form-control'%>
   </div>
 
   <div class="field">
     <%= f.label :current_password %> <br /><i>(we need your current password to confirm your changes)</i><br />
-    <%= f.password_field :current_password, autocomplete: "current-password" %>
+    <%= f.password_field :current_password, autocomplete: "current-password" ,:class=>'form-control'%>
   </div>
 
   <div class="actions">
-    <%= f.submit "Update" %>
+  <br/>
+    <%= f.submit "Update",:class=>'form-control btn-primary' ,:style=>'width:200px ' %>
   </div>
 <% end %>
+<br/>
+<div >
+  <h3>Cancel my account</h3>
 
-<h3>Cancel my account</h3>
+  <p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete ,:class=>'form-control btn-danger' ,:style=>'width:200px '%></p>
 
-<p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
+  <%= link_to "Back", home_path %>
+  </div>
 
-<%= link_to "Back", home_path %>
+</div>
