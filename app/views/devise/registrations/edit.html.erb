@@ -85,11 +85,11 @@
 <% end %>
 <br/>
 <div >
-  <h3>Cancel my account</h3>
+  <h3>Delete account</h3>
 
-  <p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete ,:class=>'form-control btn-danger' ,:style=>'width:200px '%></p>
+  <p>Once you delete your account, there is no going back. Please be certain. <%= button_to "Delete your account", registration_path(resource_name), data: { confirm: "Are you sure to delete this account ?" }, method: :delete ,:class=>'form-control btn-danger' ,:style=>'width:200px '%></p>
 
-  <%= link_to "Back", home_path %>
+  <%= link_to "Home", home_path %>
   </div>
 
 </div>
