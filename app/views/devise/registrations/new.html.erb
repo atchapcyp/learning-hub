@@ -1,11 +1,17 @@
-<h2>Sign up</h2>
+<div class="container center" style="width:800px ">
+<% if @user.errors.any? %>
+		<% @user.errors.full_messages.each do |msg| %>
+		<div class="alert alert-danger"><%= msg %></div>
+		<% end %>
+	<% end %>
+<h1>Sign up</h1>
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
+
 
   <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+    <%= f.label :email %>
+    <%= f.email_field :email, autofocus: true, autocomplete: "email" ,:class=>'form-control',:style=>"width:300px"%>
   </div>
 
   <div class="field">
@@ -13,63 +19,64 @@
     <% if @minimum_password_length %>
     <em>(<%= @minimum_password_length %> characters minimum)</em>
     <% end %><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
+    <%= f.password_field :password, autocomplete: "new-password",:class=>'form-control',:style=>"width:300px" %>
   </div>
 
   <div class="field">
     <%= f.label :password_confirmation  %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+    <%= f.password_field :password_confirmation, autocomplete: "new-password" ,:class=>'form-control',:style=>"width:300px"%>
   </div>
 
 <div class="field">
     <%= f.label :user_name ,"Display Name"%><br />
-    <%= f.text_field :user_name, autocomplete: "username" %>
+    <%= f.text_field :user_name, autocomplete: "username" ,:class=>'form-control',:style=>"width:300px"%>
   </div>
 
 
 <div class="field">
     <%= f.label :first_name %><br />
-    <%= f.text_field :first_name %>
+    <%= f.text_field :first_name ,:class=>'form-control',:style=>"width:300px"%>
 </div>
 
  <div class="field">
     <%= f.label :last_name %><br />
-    <%= f.text_field :last_name %>
+    <%= f.text_field :last_name ,:class=>'form-control',:style=>"width:300px"%>
   </div>
   <div class="field">
-    <%= f.label :citizen_id ,"Citizen ID"%><br />
-    <%= f.text_field :citizen_id %>
+    <%= f.label :citizen_id ,"Citizen ID"%>
+    <%= f.text_field :citizen_id ,:class=>'form-control',:style=>"width:300px"%>
   </div>
-
-  <div class="field">
-    <%= f.label :user_type %><br />
+<br />
+<h6 class="mb-3">User Type</h6>
+  <div class="custom-control custom-radio" >
     <%= f.radio_button :user_type ,'student', :checked => true %>
-    <%= f.label :user_type,'Student',:value=>'student'%><br />
+    <%= f.label :user_type,'Student',:value=>'student'%>
     <%= f.radio_button :user_type ,'instructor' %>
-    <%= f.label :user_type,'Instructor',:value=>'instructor'%><br />
+    <%= f.label :user_type,'Instructor',:value=>'instructor'%>
     <%= f.radio_button :user_type ,'other' %>
     <%= f.label :user_type,'Other',:value=>'other'%><br />
 </div>
   
   <div class="field">
     <%= f.label :student_id ,"Student ID" %><br />
-    <%= f.text_field :student_id , disabled: false %>
+    <%= f.text_field :student_id , disabled: false,:class=>'form-control',:style=>"width:300px" %>
   </div>
 
   <div class="field">
     <%= f.label :instructor_id,"Instructor ID" %><br />
-    <%= f.text_field :instructor_id ,disabled: false%>
+    <%= f.text_field :instructor_id ,disabled: false,:class=>'form-control',:style=>"width:300px"%>
   </div>   
 
 <div class="field">
-    <%= f.label :department_name,"Department Name" %><br />
-    <%= f.text_field :department_name, disabled: false%>
+    <%= f.label :department_name,"Department Name" %><span class="text-muted">(Optional)</span><br />
+    <%= f.text_field :department_name, disabled: false,:class=>'form-control',:style=>"width:300px"%>
   </div><br />
   
 
   <div class="actions">
-    <%= f.submit "Sign up" %>
+    <%= f.submit "Sign up" ,:class=>'btn btn-primary'%>
   </div>
 <% end %>
 
 <%= render "devise/shared/links" %>
+</div>

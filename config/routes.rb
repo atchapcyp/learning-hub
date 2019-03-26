@@ -6,7 +6,8 @@ Rails.application.routes.draw do
   get 'mycourses'=> 'mycourses#index'
   
   resources :courses do
-  	resources :assignments
+    resources :assignments
   end
+  get 'subscribe_course'=> 'courses#subscribe'
   root 'courses#index', as: 'home'
 end

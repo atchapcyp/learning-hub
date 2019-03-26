@@ -41,6 +41,21 @@ class CoursesController < ApplicationController
 		
 	end
 
+	def subscribe
+		@course = Course.new(course_sub_params)
+		@course.users << User.find(current_user.id)
+		if(@course.save)
+			if (!current_user.instructor_id.nil?)
+			@course.usercourseactions.update(status: 'Create')
+		else
+			@course.usercourseactions.update(status: 'Subscribe')
+		end
+			redirect_to @course
+		else
+			render 'new'
+		end
+	end
+
 	def update 
 		@course = Course.find(params[:id])
 
@@ -65,5 +80,8 @@ class CoursesController < ApplicationController
 		params.require(:course).permit(:course_name,:course_description)
 	end
 
+	private def course_sub_params
+		params.permit(:course_name,:course_description)
+	end
 
 end

@@ -1,5 +1,10 @@
-<h2><%= @course.course_name %></h2>
+<h3><%= @course.course_name %></h3>
 <p><%= @course.course_description %></p>
 <hr>
+
+<% if current_user.instructor_id.nil? %>
+        <%= link_to "Subscribe",subscribe_course_path(@course), :class => 'btn btn-primary' %>
+        <% else %>
 <%= link_to "Edit",edit_course_path(@course), :class => 'btn btn-primary' %>
 <%= link_to "Delete",course_path(@course),method: :delete,data: {confirm: 'Are your sure?'} ,:class => 'btn btn-danger' %>
+<% end %>

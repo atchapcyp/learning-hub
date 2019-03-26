@@ -1,9 +1,10 @@
-<h2>Edit <%= resource_name.to_s.humanize %></h2>
+
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
   <%= render "devise/shared/error_messages", resource: resource %>
 
 <div class="container" style="width:800px ">
+<h1>Edit <%= resource_name.to_s.humanize %></h1>
 <div class="row ">
           <div class="col-md-6 mb-3">
             <label for="firstName">First name</label> 

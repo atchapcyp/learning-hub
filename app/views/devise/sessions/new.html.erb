@@ -1,14 +1,15 @@
-<body class="text-center" data-gr-c-s-loaded="true" >
-  
+<body class="text-center" >
+  <br/>
 <h2>Log in</h2>
-
+<br/>
 <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
  
-
-    <%= f.email_field :email, autocomplete: "email" ,:placeholder => 'Email address',:class=>'form-control',:style =>"width:300px" %>
+<div class="container" style="width:300px ">
+    <%= f.email_field :email, autocomplete: "email" ,:placeholder => 'Email address',:class=>'form-control',:style =>"width:300px",:position =>"center" %>
  
-    <%= f.password_field :password, autocomplete: "current-password",:placeholder => 'Password',:class=>'form-control',:style =>"width:300px" %>
-
+    <%= f.password_field :password, autocomplete: "current-password",:placeholder => 'Password',:class=>'form-control',:style =>"width:300px ;justify-content:center" %>
+</div>
+<br/>
   <% if devise_mapping.rememberable? %>
     <div class="field">
       <%= f.check_box :remember_me %>
