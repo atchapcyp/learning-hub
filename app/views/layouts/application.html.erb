@@ -28,13 +28,15 @@
                     <a class="nav-link" <%= link_to 'My Course',mycourses_path %> </a>
                     <a class="nav-link" <%= link_to 'Edit Profile', edit_user_registration_path %> </a>
                     <a class="nav-link" <%= link_to 'Logout', destroy_user_session_path, method: :delete %> </a>
-                    <a class="nav-link">Welcome, <%= current_user.user_name %> </a>
+                    <a class="nav-link align-right">Welcome, <%= current_user.user_name %> </a>
         <% else %>
                     <a class="nav-link" <%= link_to 'Login ', new_user_session_path %> </a>
                     <a class="nav-link" <%= link_to 'Sign Up', new_user_registration_path %> </a>
 
         <% end %>
+
     </ul>
+    
   </div>
 </nav>
       <div ><%= notice %></div>
