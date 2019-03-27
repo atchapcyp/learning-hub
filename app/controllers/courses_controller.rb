@@ -1,13 +1,11 @@
 class CoursesController < ApplicationController
+
 	before_action :authenticate_user!, except: [:index]
 	def index
 		@courses=Course.all
-		@courses_user=Course.joins(usercourseactions: :user)
+		@courses_user=Course.joins(usercourseactions: :user,usercourseactions: :course)
 		@usercourseactions=Usercourseaction.joins(:user, :course)
-	
 	end
-
-
 
 	def new 
 		@course =Course.new
@@ -17,42 +15,39 @@ class CoursesController < ApplicationController
 	def show
 		@course=Course.find(params[:id])
 		@user=User.find(current_user.id)
-
 	end
 
 	def create
 		#render plain: params[:course].inspect // just for show 
-		#@course=Course.new(course_params)
-		@course = Course.new(course_params)
- 		@course.users << User.find(current_user.id)
+
+		course = Course.new(course_params)
+ 		course.users << User.find(current_user.id)
  		
-		if(@course.save)
+		if(course.save)
 			if (!current_user.instructor_id.nil?)
-			@course.usercourseactions.update(status: 'Create')
+			course.usercourseactions.update(status: 'Create')
+			
 		else
-			@course.usercourseactions.update(status: 'Subscribe')
+			course.usercourseactions.update(status: 'Subscribe')
 		end
-			#@usercourseaction=Usercourseaction.new(usercourseaction_params)
-			redirect_to @course
+			redirect_to course
 		else
 			render 'new'
-		end
-		
-		
+		end	
 	end
 
 	def subscribe
-		@course = Course.new(course_sub_params)
-		@course.users << User.find(current_user.id)
-		if(@course.save)
+		course = Course.find(params[:format])
+		course.users << User.find(current_user.id)
+		if(course.save)
 			if (!current_user.instructor_id.nil?)
-			@course.usercourseactions.update(status: 'Create')
+			course.usercourseactions.update(status: 'Create')
+			else
+			course.usercourseactions.update(status: 'Subscribe')
+			end
+			redirect_to home_path
 		else
-			@course.usercourseactions.update(status: 'Subscribe')
-		end
-			redirect_to @course
-		else
-			render 'new'
+			redirect_to home_path
 		end
 	end
 
@@ -81,7 +76,7 @@ class CoursesController < ApplicationController
 	end
 
 	private def course_sub_params
-		params.permit(:course_name,:course_description)
+		params.require(:course).permit(:course_name,:course_description)
 	end
 
 end

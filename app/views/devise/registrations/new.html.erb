@@ -7,8 +7,6 @@
 <h1>Sign up</h1>
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-
-
   <div class="field">
     <%= f.label :email %>
     <%= f.email_field :email, autofocus: true, autocomplete: "email" ,:class=>'form-control',:style=>"width:300px"%>
@@ -58,17 +56,17 @@
 </div>
   
   <div class="field">
-    <%= f.label :student_id ,"Student ID" %><br />
+    <%= f.label :student_id ,"Student ID" %><span class="text-muted">(Only Student)</span><br />
     <%= f.text_field :student_id , disabled: false,:class=>'form-control',:style=>"width:300px" %>
   </div>
 
   <div class="field">
-    <%= f.label :instructor_id,"Instructor ID" %><br />
+    <%= f.label :instructor_id,"Instructor ID" %><span class="text-muted">(Only Instructor)</span><br />
     <%= f.text_field :instructor_id ,disabled: false,:class=>'form-control',:style=>"width:300px"%>
   </div>   
 
 <div class="field">
-    <%= f.label :department_name,"Department Name" %><span class="text-muted">(Optional)</span><br />
+    <%= f.label :department_name,"Department Name" %><span class="text-muted">(Only Instructor)</span><br />
     <%= f.text_field :department_name, disabled: false,:class=>'form-control',:style=>"width:300px"%>
   </div><br />
   

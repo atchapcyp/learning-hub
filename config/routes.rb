@@ -8,6 +8,6 @@ Rails.application.routes.draw do
   resources :courses do
     resources :assignments
   end
-  get 'subscribe_course'=> 'courses#subscribe'
+  post 'subscribe_course'=> 'courses#subscribe'
   root 'courses#index', as: 'home'
 end

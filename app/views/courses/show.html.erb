@@ -1,10 +1,24 @@
+<br/>
 <h3><%= @course.course_name %></h3>
 <p><%= @course.course_description %></p>
 <hr>
 
 <% if current_user.instructor_id.nil? %>
-        <%= link_to "Subscribe",subscribe_course_path(@course), :class => 'btn btn-primary' %>
+        <%
+=begin%>
+ <%= button_to "Subscribe",subscribe_course_path(@course), data: {confirm:" Do you want to subscribe this Course ?"}, :class => 'btn btn-primary' %> 
+<%
+=end%>
+        <%= form_for :course, url: subscribe_course_path(@course), method: :post do |c| %>
+	
+		<% c.text_field(:course_name, {:class => 'form-control',disabled: true,hidden: true})%>
+	
+		<% c.text_field(:course_description, {:class=> 'form-control',disabled: true,hidden: true}) %>
+
+		<%= c.submit("Subscribe",{:class=> 'btn btn-primary'} )%>
+<% end %>
         <% else %>
 <%= link_to "Edit",edit_course_path(@course), :class => 'btn btn-primary' %>
 <%= link_to "Delete",course_path(@course),method: :delete,data: {confirm: 'Are your sure?'} ,:class => 'btn btn-danger' %>
 <% end %>
+

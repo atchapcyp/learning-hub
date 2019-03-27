@@ -3,10 +3,10 @@
 	<div class="card bg-light" style="margin-bottom: 10px" >
 	<h3><%= course.course_name %></h3>
 	<p><%= course.course_description %></p>
-		<p>Instructor : <%= course.user_ids %>
+		<p>Instructor ID : <%= course.user_ids %>
 			
 	<center><div style="width:300px ;margin-bottom: 10px" >
-	<%= link_to "Read More", course_path(course), :class => 'btn btn-outline-dark btn-secondary'  %>
+	<%= link_to "Read More", course_path(course), :class => 'btn btn-outline-light btn-secondary'  %>
 </div></center>
 	</div>
 <% end %>
