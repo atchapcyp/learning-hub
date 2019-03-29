@@ -5,6 +5,7 @@ class CoursesController < ApplicationController
 		@courses=Course.all
 		@courses_user=Course.joins(usercourseactions: :user,usercourseactions: :course)
 		@usercourseactions=Usercourseaction.joins(:user, :course)
+		
 	end
 
 	def new 
@@ -63,8 +64,15 @@ class CoursesController < ApplicationController
 
 	def destroy
 		@course = Course.find(params[:id])
-		@course.destroy
+		authorize @course #pundit
+		@course.destroy #pundit
 		redirect_to courses_path
+	end
+
+	rescue_from Pundit::NotAuthorizedError, with: :user_not_allow
+	private def user_not_allow
+		flash[:warning] = "You are not allow to delete this course"
+		redirect_to home_path
 	end
 
 	def edit
